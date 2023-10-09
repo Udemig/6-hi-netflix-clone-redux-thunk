@@ -17,6 +17,7 @@ const Hero = () => {
 
   
   useEffect(() => {
+
     //console.log("2.useEffec", state.isLoading);
     console.log("Herodaki State 2.", state?.populerMovies[0]);
     const randomIndex = Math.floor(Math.random() * 15);
@@ -45,7 +46,7 @@ const Hero = () => {
           </div>
           <div className="col-md-6 mt-3  d-flex align-items-center justify-content-center">
 
-          <img className="img-fluid rounded" src={`${baseImgUrl}${randomMovie.backdrop_path}`} alt="" />
+          <img className="img-fluid rounded" src={`${baseImgUrl}${randomMovie?.backdrop_path}`} alt="" />
          
           </div>
         </>

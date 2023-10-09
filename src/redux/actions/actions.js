@@ -1,6 +1,6 @@
 import axios from "axios";
 import { actionTypes } from "../actionTypes";
-import { options } from "../../contants";
+import { options, genresOptions } from "../../contants";
 
 // Senkron Action
 export const setLoading = (payload) => ({
@@ -10,17 +10,30 @@ export const setLoading = (payload) => ({
 
 //Hem verileri çeksin hemde reduceri
 
-//Asenkron Kısım 
-export const getMovies=()=>{
-
-  return async function(dispatch){
-
-    const res=await axios.get("https://api.themoviedb.org/3/movie/popular",options)
+//Asenkron Kısım
+export const getMovies = () => {
+  return async function (dispatch) {
+    const res = await axios.get(
+      "https://api.themoviedb.org/3/movie/popular",
+      options
+    );
     dispatch({
-      type:actionTypes.SET_MOVIES,
-      payload:res.data
+      type: actionTypes.SET_MOVIES,
+      payload: res.data,
+    });
+  };
+};
+
+export const getGenres = () => (dispatch) => {
+  axios
+    .request(genresOptions)
+    .then(function (response) {
+      dispatch({
+        type: actionTypes.SET_CATEGORIES,
+        payload: response.data.genres,
+      });
     })
-
-
-  }
-}
+    .catch(function (error) {
+      console.error(error);
+    });
+};

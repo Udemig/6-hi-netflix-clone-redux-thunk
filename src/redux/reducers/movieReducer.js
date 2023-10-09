@@ -25,6 +25,12 @@ export const movieReducer=(state=initialState,action)=>{
           isLoading:action.payload
         }
 
+        case actionTypes.SET_CATEGORIES:
+          return{
+            ...state,
+            genres:action.payload
+          }
+
 
       default:
         return state
